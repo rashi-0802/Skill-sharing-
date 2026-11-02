@@ -1,0 +1,552 @@
+/* ==========================================================================
+   4S Match Found Handshake Animation Component Styles
+   Theme: Manga / Anime Academy Team-Up Handshake
+   Colors: Ink (#1A1A2E), Electric Blue (#3A86FF), Sakura Pink (#FF8FB1),
+           Sunrise Yellow (#FFD23F), Teal (#2EC4B6), Red (#FF4D6D)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Modal Backdrop & Dialog Container
+   -------------------------------------------------------------------------- */
+.match-found-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99995;
+  background-color: rgba(26, 26, 46, 0.76);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  animation: modalBackdropFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes modalBackdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.match-found-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  background-color: #ffffff;
+  border: 3.5px solid var(--ink, #1A1A2E);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--ink, #1A1A2E);
+  padding: 2rem 1.75rem 1.5rem;
+  overflow: hidden;
+  outline: none;
+  animation: modalDialogPopIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalDialogPopIn {
+  0% {
+    transform: scale(0.85) translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Close "X" Button */
+.match-modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 40;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: #ffffff;
+  color: var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.match-modal-close-btn:hover {
+  background-color: #FF8FB1;
+  transform: translateY(-2px) scale(1.05);
+}
+
+.match-modal-close-btn:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+/* --------------------------------------------------------------------------
+   Inline Showcase Container (Landing Page)
+   -------------------------------------------------------------------------- */
+.match-found-inline-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--ink, #1A1A2E);
+  padding: 1.75rem 1.5rem 1.25rem;
+  overflow: hidden;
+}
+
+/* Showcase Header Badge */
+.match-showcase-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #FFD23F;
+  border: 2px solid var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.75rem;
+  color: var(--ink, #1A1A2E);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   The Animation Stage (Characters, Handshake, Burst, Title)
+   -------------------------------------------------------------------------- */
+.match-stage-viewport {
+  position: relative;
+  width: 100%;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Halftone paper texture background */
+.match-stage-halftone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--ink, #1A1A2E) 0.8px, transparent 0.8px);
+  background-size: 16px 16px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Contact Screen Pulse Flash */
+.match-contact-pulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 210, 63, 0.45), transparent 70%);
+  z-index: 12;
+  pointer-events: none;
+  animation: contactPulseAnim 0.45s ease-out forwards;
+}
+
+@keyframes contactPulseAnim {
+  0% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* --------------------------------------------------------------------------
+   Comic Burst & Speed Lines
+   -------------------------------------------------------------------------- */
+.match-comic-burst-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 290px;
+  height: 290px;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(4px 4px 0 var(--ink, #1A1A2E));
+}
+
+.match-speed-lines-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 360px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* Sparkles & Floating Stars */
+.match-sparkle-star {
+  position: absolute;
+  pointer-events: none;
+  z-index: 25;
+  line-height: 1;
+  filter: drop-shadow(1.5px 1.5px 0 var(--ink, #1A1A2E));
+}
+
+/* --------------------------------------------------------------------------
+   Title: "MATCH FOUND!"
+   -------------------------------------------------------------------------- */
+.match-found-title-wrap {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  text-align: center;
+  pointer-events: none;
+}
+
+.match-found-title {
+  font-family: 'Bangers', var(--font-heading), cursive, sans-serif;
+  font-size: 2.75rem;
+  letter-spacing: 0.05em;
+  color: #FFD23F;
+  -webkit-text-stroke: 2.5px var(--ink, #1A1A2E);
+  text-shadow: 4px 4px 0 var(--ink, #1A1A2E);
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Match Burst ID Pairing Banner */
+.match-burst-id-pairing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FFF8EE;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 9999px;
+  padding: 3px 12px;
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+  margin-top: 6px;
+  pointer-events: auto;
+  font-size: 11.5px;
+  max-width: 95vw;
+}
+
+.match-pairing-tcr,
+.match-pairing-lrn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pairing-tag-id {
+  font-weight: 900;
+  color: #1A1A2E;
+  background-color: #FFFFFF;
+  border: 1px solid #1A1A2E;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.match-pairing-tcr .pairing-tag-id {
+  border-left: 3px solid #3A86FF;
+}
+
+.match-pairing-lrn .pairing-tag-id {
+  border-left: 3px solid #FF8FB1;
+}
+
+.pairing-tag-person {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #475569;
+  font-family: var(--font-body);
+}
+
+.match-pairing-sep {
+  font-family: 'Bangers', cursive;
+  font-size: 13px;
+  color: #FF5C8D;
+  font-weight: 900;
+}
+
+/* --------------------------------------------------------------------------
+   Speech Bubbles (Stickers above characters)
+   -------------------------------------------------------------------------- */
+.match-bubble-wrap {
+  position: absolute;
+  top: 56px;
+  z-index: 22;
+  pointer-events: none;
+}
+
+.match-bubble-teacher {
+  left: 12%;
+}
+
+.match-bubble-learner {
+  right: 12%;
+}
+
+.match-speech-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #ffffff;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 12px;
+  padding: 0.3rem 0.65rem;
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--ink, #1A1A2E);
+  white-space: nowrap;
+  position: relative;
+}
+
+.match-speech-sticker::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--ink, #1A1A2E);
+}
+
+.match-bubble-teacher .match-speech-sticker::after {
+  left: 30%;
+}
+
+.match-bubble-learner .match-speech-sticker::after {
+  right: 30%;
+}
+
+.match-role-badge {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid var(--ink, #1A1A2E);
+  text-transform: uppercase;
+}
+
+.match-role-badge.teacher {
+  background-color: #3A86FF;
+  color: #ffffff;
+}
+
+.match-role-badge.learner {
+  background-color: #FF8FB1;
+  color: var(--ink, #1A1A2E);
+}
+
+/* Energy connection line between bubbles */
+.match-bubble-energy-line {
+  position: absolute;
+  top: 68px;
+  left: 36%;
+  width: 28%;
+  height: 28px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Chibi Characters & Handshake
+   -------------------------------------------------------------------------- */
+.match-chibi-wrap {
+  position: absolute;
+  bottom: 45px;
+  width: 140px;
+  height: 180px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.match-chibi-teacher {
+  left: 14%;
+}
+
+.match-chibi-learner {
+  right: 14%;
+}
+
+.match-chibi-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 3px 0 rgba(26, 26, 46, 0.3));
+}
+
+/* Central Clasping Handshake */
+.match-handshake-clasp {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 60px;
+  z-index: 16;
+  pointer-events: none;
+}
+
+.match-handshake-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(2.5px 2.5px 0 var(--ink, #1A1A2E));
+}
+
+/* --------------------------------------------------------------------------
+   Match Score Pill & Bottom Controls
+   -------------------------------------------------------------------------- */
+.match-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed rgba(26, 26, 46, 0.2);
+}
+
+.match-score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 2.5px solid var(--ink, #1A1A2E);
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: var(--ink, #1A1A2E);
+}
+
+.match-score-star {
+  color: #FFD23F;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.match-score-tag {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+/* Action Continue Button in Modal */
+.match-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #3A86FF;
+  color: #ffffff;
+  border: 2.5px solid var(--ink, #1A1A2E);
+  border-radius: 9999px;
+  padding: 0.55rem 1.4rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1A1A2E);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.match-continue-btn:hover {
+  background-color: #2563EB;
+  transform: translateY(-2px);
+}
+
+.match-continue-btn:active {
+  transform: translateY(1px);
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1A1A2E);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .match-stage-viewport {
+    height: 270px;
+  }
+
+  .match-found-title {
+    font-size: 2.1rem;
+  }
+
+  .match-chibi-wrap {
+    width: 110px;
+    height: 145px;
+    bottom: 35px;
+  }
+
+  .match-chibi-teacher {
+    left: 4%;
+  }
+
+  .match-chibi-learner {
+    right: 4%;
+  }
+
+  .match-bubble-teacher {
+    left: 2%;
+    top: 50px;
+  }
+
+  .match-bubble-learner {
+    right: 2%;
+    top: 50px;
+  }
+
+  .match-speech-sticker {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .match-bottom-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .match-score-pill {
+    justify-content: center;
+  }
+
+  .match-continue-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .match-found-modal-backdrop,
+  .match-found-modal-dialog,
+  .match-chibi-wrap,
+  .match-comic-burst-svg,
+  .match-speed-lines-svg,
+  .match-sparkle-star,
+  .match-found-title,
+  .match-bubble-wrap,
+  .match-handshake-clasp {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .match-sparkle-star,
+  .match-contact-pulse,
+  .match-speed-lines-svg {
+    display: none !important;
+  }
+}

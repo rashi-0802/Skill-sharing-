@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Remix Remix Remix 4S Skill Exchange",
+  "description": "A modern peer-to-peer platform for college students to teach and learn new skills through a clean, responsive interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,896 @@
+/* ==========================================================================
+   4S CAMPUS LEADERBOARD – ANIME / MANGA ACADEMY THEME
+   Ink: #1A1A2E | Blue: #3A86FF | Pink: #FF8FB1 | Yellow: #FFD23F | Cream: #FFF8EE
+   ========================================================================== */
+
+.leaderboard-section {
+  padding: 5rem 0 4.5rem;
+  background-color: var(--cream, #FFF8EE);
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid var(--ink, #1A1A2E);
+  border-bottom: 3px solid var(--ink, #1A1A2E);
+}
+
+/* Background Manga Halftone / Dot Texture */
+.leaderboard-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(26, 26, 46, 0.08) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER ZONE
+   -------------------------------------------------------------------------- */
+.leaderboard-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leaderboard-kicker-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.leaderboard-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.85rem;
+  background-color: #FFFFFF;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+}
+
+.leaderboard-title {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  color: var(--ink, #1A1A2E);
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+  text-shadow: 3px 3px 0 #FFD23F;
+}
+
+.leaderboard-subtitle {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4A4A68;
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+
+/* How Scores Work Button & Popover */
+.scores-info-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  z-index: 10;
+}
+
+.scores-info-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #FFFFFF;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  padding: 0.35rem 0.95rem;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.scores-info-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 0 var(--ink, #1A1A2E);
+  background-color: #FFFDF5;
+}
+
+.scores-info-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(380px, 92vw);
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--ink, #1A1A2E);
+  padding: 1.25rem;
+  text-align: left;
+  z-index: 50;
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.popover-arrow {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 14px;
+  height: 14px;
+  background-color: #FFFFFF;
+  border-top: 3px solid var(--ink, #1A1A2E);
+  border-left: 3px solid var(--ink, #1A1A2E);
+}
+
+.popover-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.popover-header h4 {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: var(--ink, #1A1A2E);
+  margin: 0;
+}
+
+.popover-formula {
+  background-color: #FFF9E6;
+  border: 2px dashed #F59E0B;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink, #1A1A2E);
+  margin-bottom: 0.75rem;
+}
+
+.popover-breakdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #374151;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   FILTER CHIPS
+   -------------------------------------------------------------------------- */
+.leaderboard-filters-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #FFFFFF;
+  padding: 0.35rem 0.5rem;
+  border: 2.5px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.filter-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #4A4A68;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.filter-chip-btn:hover {
+  color: var(--ink, #1A1A2E);
+  background-color: #F8FAFC;
+}
+
+.filter-chip-btn.active {
+  background-color: #FFD23F;
+  border-color: var(--ink, #1A1A2E);
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+}
+
+/* --------------------------------------------------------------------------
+   ANIME PODIUM (TOP 3)
+   -------------------------------------------------------------------------- */
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(12px, 2.5vw, 24px);
+  max-width: 980px;
+  margin: 0 auto 3.5rem;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.podium-column {
+  flex: 1;
+  max-width: 290px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Podium Card Box (Above Block) */
+.podium-card-content {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-radius: 18px 18px 0 0;
+  border-bottom: none;
+  padding: 1.5rem 1rem 1.25rem;
+  text-align: center;
+  box-shadow: 4px -2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-image: linear-gradient(180deg, #FFFFFF 0%, #FFFDF9 100%);
+}
+
+/* Podium Block Base (Standing Step) */
+.podium-block {
+  width: 100%;
+  border: 3px solid var(--ink, #1A1A2E);
+  box-shadow: 5px 5px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 0 0 16px 16px;
+}
+
+.podium-block .block-number {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--ink, #1A1A2E);
+  text-shadow: 2px 2px 0 #FFFFFF;
+}
+
+/* Podium Heights */
+.podium-rank-1 .podium-block {
+  height: 150px;
+  background: linear-gradient(180deg, #FFD23F 0%, #F59E0B 100%);
+}
+
+.podium-rank-2 .podium-block {
+  height: 105px;
+  background: linear-gradient(180deg, #E2E8F0 0%, #94A3B8 100%);
+}
+
+.podium-rank-3 .podium-block {
+  height: 75px;
+  background: linear-gradient(180deg, #FED7AA 0%, #EA580C 100%);
+}
+
+/* 1st Place Champion Special Styling */
+.podium-rank-1 {
+  z-index: 3;
+}
+
+.podium-rank-1 .podium-card-content {
+  padding-top: 2rem;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 6px -3px 0 var(--ink, #1A1A2E);
+  border-color: var(--ink, #1A1A2E);
+  background: linear-gradient(180deg, #FFFDF0 0%, #FFFFFF 100%);
+}
+
+/* Ribbons */
+.podium-ribbon {
+  position: absolute;
+  top: -14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  border: 2.5px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+  white-space: nowrap;
+}
+
+.ribbon-gold {
+  background-color: #FFD23F;
+  color: var(--ink, #1A1A2E);
+  transform: rotate(-1deg);
+}
+
+.ribbon-silver {
+  background-color: #E2E8F0;
+  color: var(--ink, #1A1A2E);
+  transform: rotate(1deg);
+}
+
+.ribbon-bronze {
+  background-color: #FED7AA;
+  color: var(--ink, #1A1A2E);
+  transform: rotate(-1.5deg);
+}
+
+.ribbon-crown-icon {
+  color: #B45309;
+}
+
+/* Avatars on Podium */
+.podium-avatar-wrap {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.podium-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.85rem;
+  color: #FFFFFF;
+  user-select: none;
+}
+
+.avatar-champion {
+  width: 86px;
+  height: 86px;
+  font-size: 2.2rem;
+}
+
+/* Thick Ink Ring */
+.avatar-ink-ring {
+  border: 3.5px solid var(--ink, #1A1A2E);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+/* Golden Ring for Skill Master / Champion */
+.avatar-gold-ring {
+  border: 4px solid #FFD23F;
+  box-shadow: 0 0 0 3px var(--ink, #1A1A2E), 0 0 16px rgba(255, 210, 63, 0.7);
+}
+
+/* Rank Badge Floating on Avatar */
+.podium-rank-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 0.85rem;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+}
+
+.rank-badge-gold {
+  background-color: #FFD23F;
+  color: var(--ink, #1A1A2E);
+}
+
+.rank-badge-silver {
+  background-color: #CBD5E1;
+  color: var(--ink, #1A1A2E);
+}
+
+.rank-badge-bronze {
+  background-color: #FDBA74;
+  color: var(--ink, #1A1A2E);
+}
+
+/* Student Name */
+.podium-student-name {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.35rem;
+  color: var(--ink, #1A1A2E);
+  letter-spacing: 0.02em;
+  margin: 0 0 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.podium-student-name.champion-name {
+  font-size: 1.6rem;
+}
+
+.you-pill {
+  display: inline-block;
+  background-color: #FFD23F;
+  border: 1.5px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+/* Skill Master Title */
+.skill-master-title {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #B45309;
+  background-color: #FEF3C7;
+  border: 1.5px solid #F59E0B;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-champion {
+  background-color: #FFD23F;
+  border-color: var(--ink, #1A1A2E);
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+}
+
+/* Role Chips on Podium */
+.podium-chips-row {
+  margin-bottom: 0.75rem;
+}
+
+.leaderboard-role-chips-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+/* Sticker Chips */
+.leaderboard-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 6px;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  white-space: nowrap;
+}
+
+/* Blue Taught Chip */
+.chip-taught {
+  background-color: #3A86FF;
+  color: #FFFFFF;
+}
+
+/* Pink Learnt Chip */
+.chip-learnt {
+  background-color: #FF8FB1;
+  color: var(--ink, #1A1A2E);
+}
+
+/* Grey New Chip */
+.chip-new {
+  background-color: #E2E8F0;
+  color: #475569;
+}
+
+/* Score Box on Podium */
+.podium-score-box {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.podium-score-number {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 2.1rem;
+  color: var(--ink, #1A1A2E);
+  line-height: 1;
+}
+
+.champion-score-box .podium-score-number {
+  font-size: 2.6rem;
+  color: #2563EB;
+}
+
+.podium-score-label {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #64748B;
+}
+
+/* Meta Pills: Badges & Rating */
+.podium-meta-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.meta-pill-badge,
+.meta-pill-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--ink, #1A1A2E);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--ink, #1A1A2E);
+}
+
+/* Highlight Podium block if current user is on it */
+.podium-current-user-highlight .podium-card-content {
+  border-color: #F59E0B;
+  box-shadow: 0 0 0 3px #FFD23F, 4px -2px 0 var(--ink, #1A1A2E);
+}
+
+/* --------------------------------------------------------------------------
+   RANKS 4 TO 10 TABLE
+   -------------------------------------------------------------------------- */
+.leaderboard-table-container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.leaderboard-table-header {
+  display: grid;
+  grid-template-columns: 80px 2.2fr 1.8fr 1fr 1.3fr 1fr;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background-color: #1A1A2E;
+  color: #FFFFFF;
+  border-radius: 12px 12px 0 0;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-bottom: none;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0 var(--ink, #1A1A2E);
+}
+
+.leaderboard-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  box-shadow: 4px 4px 0 var(--ink, #1A1A2E);
+  overflow: hidden;
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 80px 2.2fr 1.8fr 1fr 1.3fr 1fr;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 2px solid #E2E8F0;
+  background-color: #FFFFFF;
+  transition: background-color 0.15s ease;
+}
+
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-row:hover {
+  background-color: #FFFDF5;
+}
+
+/* Row Columns */
+.row-col {
+  display: flex;
+  align-items: center;
+}
+
+.col-rank {
+  justify-content: flex-start;
+}
+
+.col-student {
+  gap: 0.75rem;
+}
+
+.col-roles {
+  justify-content: flex-start;
+}
+
+.col-badges {
+  justify-content: flex-start;
+}
+
+.col-rating {
+  justify-content: flex-start;
+}
+
+.col-score {
+  justify-content: flex-end;
+  gap: 0.2rem;
+}
+
+/* Rank Number Tag */
+.rank-tag-number {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.35rem;
+  color: #475569;
+  letter-spacing: 0.02em;
+}
+
+.rank-tag-you {
+  color: #D97706;
+}
+
+/* Student Avatar in Row */
+.row-student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.15rem;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.row-student-info {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow: hidden;
+}
+
+.row-student-name {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--ink, #1A1A2E);
+  white-space: nowrap;
+}
+
+/* Badges pill */
+.row-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--ink, #1A1A2E);
+}
+
+/* Rating display */
+.row-rating-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.row-rating-val {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--ink, #1A1A2E);
+}
+
+.row-reviews-count {
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 700;
+}
+
+/* Score Number in Row */
+.row-score-number {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.45rem;
+  color: var(--ink, #1A1A2E);
+  line-height: 1;
+}
+
+.row-score-unit {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #64748B;
+}
+
+/* Highlight user in top 10 with yellow outline */
+.leaderboard-row-you-highlight {
+  background-color: #FFFBEB !important;
+  border-left: 4px solid #FFD23F;
+  border-right: 4px solid #FFD23F;
+  outline: 3px solid #FFD23F;
+  outline-offset: -3px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   HIGHLIGHTED "YOUR RANK" CARD (Shown when user is not in top 10)
+   -------------------------------------------------------------------------- */
+.leaderboard-your-rank-card {
+  margin-top: 1.5rem;
+  background-color: #FFFFFF;
+  border: 3.5px solid #FFD23F;
+  border-radius: 14px;
+  box-shadow: 5px 5px 0 var(--ink, #1A1A2E);
+  overflow: hidden;
+  position: relative;
+}
+
+.your-rank-banner-header {
+  background: linear-gradient(90deg, #FFD23F 0%, #F59E0B 100%);
+  border-bottom: 2.5px solid var(--ink, #1A1A2E);
+  padding: 0.45rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.your-rank-sticker {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--ink, #1A1A2E);
+}
+
+.your-rank-subnote {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #78350F;
+}
+
+.leaderboard-row-you-sticky {
+  background-color: #FFFDF2;
+  border-bottom: none;
+}
+
+/* Avatar background classes fallback */
+.avatar-indigo {
+  background: linear-gradient(135deg, #3A86FF 0%, #4F46E5 100%);
+}
+
+.avatar-purple {
+  background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%);
+}
+
+.avatar-blue {
+  background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE STYLES
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .leaderboard-table-header {
+    grid-template-columns: 60px 1.8fr 1.6fr 0.9fr 1.1fr 0.9fr;
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .leaderboard-row {
+    grid-template-columns: 60px 1.8fr 1.6fr 0.9fr 1.1fr 0.9fr;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .leaderboard-section {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .podium-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .podium-column {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .podium-card-content {
+    border-radius: 16px;
+    border-bottom: 3px solid var(--ink, #1A1A2E);
+  }
+
+  .podium-block {
+    display: none; /* Hide blocks on small mobile, keep cards vertical stack */
+  }
+
+  .leaderboard-table-header {
+    display: none; /* Hide multi-column header on mobile */
+  }
+
+  .leaderboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0.9rem 1rem;
+    position: relative;
+  }
+
+  .leaderboard-row .col-rank {
+    width: auto;
+  }
+
+  .leaderboard-row .col-student {
+    flex: 1;
+  }
+
+  .leaderboard-row .col-score {
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 0.35rem;
+    border-top: 1px dashed #E2E8F0;
+  }
+
+  .leaderboard-row .col-roles,
+  .leaderboard-row .col-badges,
+  .leaderboard-row .col-rating {
+    width: auto;
+  }
+}

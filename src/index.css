@@ -1,0 +1,1021 @@
+/* ==========================================================================
+   4S – Student Skill Sharing System
+   Theme: Anime / Manga Academy Design System (Step 1: Global Foundations)
+   ========================================================================== */
+
+:root {
+  /* Ink & Text (WCAG AA Compliant: #1A1A2E has >14:1 contrast on #FFF8EE) */
+  --ink: #1A1A2E;
+  --text-main: #1A1A2E;
+  --text-muted: #5A5A78;    /* 6.2:1 contrast ratio against #FFF8EE (exceeds WCAG AA 4.5:1) */
+  --text-light: #6C6C8A;
+  --text-disabled: #9898AC;
+  --text-inverse: #FFFFFF;
+
+  /* Paper Surfaces */
+  --bg-main: #FFF8EE;       /* Warm Manga Paper Cream */
+  --bg-card: #FFFFFF;       /* Pure Crisp White Card Surface */
+  --bg-subtle: #FFF1DE;     /* Light halftone cream container */
+  --bg-surface-hover: #FFF4E5;
+
+  /* Academy Palette */
+  --primary: #3A86FF;         /* Electric Blue */
+  --primary-hover: #2563EB;
+  --primary-light: #EBF2FF;
+  --primary-border: #1A1A2E;
+
+  --secondary: #FF8FB1;       /* Rose Pink */
+  --secondary-hover: #F4729C;
+  --secondary-light: #FFF0F5;
+  --secondary-border: #1A1A2E;
+
+  --accent: #FFD23F;          /* Sunrise Yellow */
+  --accent-hover: #F5C522;
+  --accent-light: #FFF9E6;
+  --accent-border: #1A1A2E;
+
+  --highlight: #FF4D6D;       /* Manga Highlight Red */
+  --danger: #FF4D6D;
+  --danger-hover: #E63956;
+  --danger-light: #FFEBF0;
+  --danger-border: #1A1A2E;
+
+  --success: #2EC4B6;         /* Mint / Cyan */
+  --success-hover: #20AFA2;
+  --success-light: #E6FBF9;
+  --success-border: #1A1A2E;
+
+  --warning: #FFD23F;
+  --warning-light: #FFF9E6;
+  --warning-border: #1A1A2E;
+
+  /* Outlines & Hard Offset Shadows */
+  --border-color: #1A1A2E;
+  --border-subtle: #1A1A2E;
+  --border-focus: #FFD23F;
+  --border-width: 3px;
+
+  --shadow-xs: 2px 2px 0 #1A1A2E;
+  --shadow-sm: 3px 3px 0 #1A1A2E;
+  --shadow-md: 4px 4px 0 #1A1A2E;
+  --shadow-lg: 6px 6px 0 #1A1A2E;
+  --shadow-xl: 8px 8px 0 #1A1A2E;
+  --shadow-2xl: 10px 10px 0 #1A1A2E;
+
+  /* Radius Scale: 14px default rounded corners */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 14px;
+  --radius-2xl: 14px;
+  --radius-pill: 9999px;
+
+  /* Typography */
+  --font-heading: 'Outfit', 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-label: 'Zen Maru Gothic', 'Nunito', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: auto;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body, * {
+    scroll-behavior: auto !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Base Body & Halftone Dot Pattern Overlay (Opacity 0.06)
+   ========================================================================== */
+body {
+  position: relative;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+/* Accessibility Focus Ring */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Custom Manga Scrollbar (Thick, Rose Pink Thumb, Ink Outline)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-left: 2px solid var(--ink);
+  border-top: 2px solid var(--ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border: 2px solid var(--ink);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--highlight);
+}
+
+* {
+  scrollbar-color: var(--secondary) var(--bg-main);
+  scrollbar-width: auto;
+}
+
+/* ==========================================================================
+   Typography Hierarchy: Bold Modern Outfit Headings, Nunito Body, Zen Maru Gothic Labels
+   ========================================================================== */
+h1, h2, h3, h4,
+.hero-title,
+.section-title,
+.page-title,
+.cta-title,
+.heading-bangers {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+h1, .text-4xl, .hero-title {
+  font-size: 2.75rem;
+  letter-spacing: -0.035em;
+}
+
+h2, .text-3xl, .section-title, .cta-title {
+  font-size: 2.15rem;
+  letter-spacing: -0.03em;
+}
+
+h3, .text-2xl {
+  font-size: 1.55rem;
+}
+
+h4, .text-xl {
+  font-size: 1.25rem;
+}
+
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+.font-label { font-family: var(--font-label); }
+.font-mono { font-family: var(--font-mono); }
+
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-xs { font-size: 0.75rem; line-height: 1.2rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.4rem; }
+.text-base { font-size: 1rem; line-height: 1.6rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+
+.text-main { color: var(--text-main); }
+.text-muted { color: var(--text-muted); }
+.text-light { color: var(--text-light); }
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+
+/* Tabular Numerals for Metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Layout Containers & Utilities
+   ========================================================================== */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1 1 0%; }
+.shrink-0 { flex-shrink: 0; }
+
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-12 { gap: 3rem; }
+
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+
+/* ==========================================================================
+   Cards: Thick 3px Ink Outlines & 6px Hard Offset Shadows
+   ========================================================================== */
+.card,
+.stat-card,
+.feature-card,
+.step-card,
+.category-card,
+.review-card,
+.session-card,
+.match-card,
+.skill-card,
+.request-card,
+.profile-card,
+.auth-card,
+.collab-card,
+.table-card {
+  background-color: var(--bg-card);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover,
+.stat-card:hover,
+.feature-card:hover,
+.category-card:hover,
+.session-card:hover,
+.match-card:hover,
+.skill-card:hover,
+.request-card:hover,
+.profile-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* ==========================================================================
+   Buttons: 3px Ink Outlines & Hard Offset Shadows
+   ========================================================================== */
+.btn,
+button.btn,
+a.btn,
+.hero-primary-btn,
+.hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-md);
+  gap: 0.5rem;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.25;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+}
+
+.btn:hover,
+.hero-primary-btn:hover,
+.hero-secondary-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.btn:active,
+.hero-primary-btn:active,
+.hero-secondary-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* Primary Button: Electric Blue */
+.btn-primary,
+.hero-primary-btn {
+  background-color: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--ink);
+}
+
+.btn-primary:hover,
+.hero-primary-btn:hover {
+  background-color: var(--primary-hover);
+  color: #FFFFFF;
+}
+
+/* Secondary & Outline Buttons: White with Ink Outline */
+.btn-secondary,
+.btn-outline,
+.btn-outline-primary,
+.hero-secondary-btn {
+  background-color: #FFFFFF;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn-secondary:hover,
+.btn-outline:hover,
+.btn-outline-primary:hover,
+.hero-secondary-btn:hover {
+  background-color: var(--accent-light);
+  color: var(--ink);
+}
+
+/* Danger Button: Highlight Red */
+.btn-danger,
+.btn-outline-danger {
+  background-color: var(--danger);
+  color: #FFFFFF;
+  border-color: var(--ink);
+}
+
+.btn-danger:hover,
+.btn-outline-danger:hover {
+  background-color: var(--danger-hover);
+  color: #FFFFFF;
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--ink);
+  border: 3px solid transparent;
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Button Sizing */
+.btn-lg {
+  padding: 0.85rem 1.75rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+  border-width: 2.5px;
+  box-shadow: var(--shadow-xs);
+  gap: 0.375rem;
+}
+
+.btn-sm:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.btn-sm:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* ==========================================================================
+   Form Controls: 3px Ink Outlines & Sunrise Yellow Focus Highlight
+   ========================================================================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label-required {
+  color: var(--highlight);
+  margin-left: 0.25rem;
+}
+
+.form-control,
+.form-input,
+.form-select,
+textarea.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  font-size: 0.9375rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  background-color: #FFFFFF;
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+/* Yellow Focus Highlight */
+.form-control:focus,
+.form-input:focus,
+.form-select:focus,
+textarea.form-control:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px var(--accent), 5px 5px 0 var(--ink);
+}
+
+.form-control.input-error,
+.form-input.input-error,
+.form-select.input-error {
+  border-color: var(--highlight);
+  box-shadow: 0 0 0 3px var(--highlight), 4px 4px 0 var(--ink);
+}
+
+.form-error-msg {
+  font-size: 0.8125rem;
+  color: var(--highlight);
+  font-weight: 700;
+  font-family: var(--font-label);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+textarea.form-control,
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* ==========================================================================
+   Pills & Tags: Pill-Shaped with 2px Ink Borders
+   ========================================================================== */
+.pill,
+.tag,
+.badge,
+.hero-pill,
+.filter-tag,
+.skill-tag,
+.category-pill,
+.status-pill,
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow-xs);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  line-height: 1.3;
+}
+
+.tag:hover,
+.filter-tag:hover,
+.category-pill:hover,
+.skill-tag:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Pill Color Variants */
+.pill-primary, .tag-primary { background-color: var(--primary-light); color: var(--primary); }
+.pill-secondary, .tag-secondary { background-color: var(--secondary-light); color: var(--ink); }
+.pill-accent, .tag-accent { background-color: var(--accent); color: var(--ink); }
+.pill-success, .tag-success { background-color: var(--success-light); color: var(--ink); }
+.pill-danger, .tag-danger { background-color: var(--danger-light); color: var(--danger); }
+
+/* ==========================================================================
+   Modals: 3px Ink Outlines, 14px Radius & 8px Hard Offset Shadows
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 26, 46, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 1000;
+}
+
+.modal-container {
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 3px solid var(--ink);
+  background-color: var(--bg-card);
+}
+
+.modal-header h3,
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.modal-close-btn {
+  background: #FFFFFF;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: var(--accent);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 3px solid var(--ink);
+  background-color: var(--bg-main);
+  border-radius: 0 0 11px 11px;
+}
+
+/* ==========================================================================
+   Dropdowns & Popovers: 3px Ink Outlines & 6px Hard Offset Shadows
+   ========================================================================== */
+.dropdown-menu,
+.user-dropdown,
+.select-dropdown,
+.popover {
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 500;
+}
+
+/* ==========================================================================
+   Manga Tilted & Skewed Accent Utilities
+   ========================================================================== */
+.manga-tilt-left {
+  transform: rotate(-2deg);
+}
+
+.manga-tilt-right {
+  transform: rotate(2deg);
+}
+
+.manga-skew {
+  transform: skewX(-4deg);
+}
+
+.manga-border-ink {
+  border: 3px solid var(--ink);
+}
+
+.manga-shadow {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================================================
+   Universal Toast Alert System
+   ========================================================================== */
+.app-toast-alert {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--ink);
+  color: #FFFFFF;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  border: 3px solid #FFFFFF;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  max-width: 90vw;
+}
+
+/* ==========================================================================
+   Skeleton Loading System
+   ========================================================================== */
+.skeleton {
+  background: linear-gradient(90deg, #FFF1DE 25%, #FFE7CC 50%, #FFF1DE 75%);
+  background-size: 200% 100%;
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--ink);
+}
+
+.skeleton-text {
+  height: 0.875rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.25rem;
+  width: 60%;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+}
+
+.skeleton-card {
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+/* ==========================================================================
+   Skill Chips: Small Stickers (Outlined Pills) with Wiggle on Hover
+   ========================================================================== */
+.skill-chip,
+.category-skill-chip,
+.mini-skill-pill,
+.category-skill-tag,
+.skill-pill-teach,
+.skill-pill-learn,
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  background-color: #FFFFFF;
+  color: var(--ink);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: default;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+@keyframes stickerWiggle {
+  0% { transform: translateY(-2px) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(-3deg); }
+  50% { transform: translateY(-2px) rotate(3deg); }
+  75% { transform: translateY(-2px) rotate(-1.5deg); }
+  100% { transform: translateY(-2px) rotate(0deg); }
+}
+
+.skill-chip:hover,
+.category-skill-chip:hover,
+.mini-skill-pill:hover,
+.category-skill-tag:hover,
+.skill-pill-teach:hover,
+.skill-pill-learn:hover,
+.skill-tag:hover {
+  animation: stickerWiggle 0.35s ease-in-out;
+  box-shadow: 3px 3px 0 var(--ink);
+  background-color: var(--accent);
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Avatars: Thick Ink Ring & Small Sparkle on Hover
+   ========================================================================== */
+.mentor-avatar,
+.peer-avatar,
+.navbar-avatar,
+.testimonial-avatar,
+.profile-avatar,
+.student-avatar,
+.student-peer-avatar,
+.match-avatar,
+.dash-user-avatar,
+.msg-avatar {
+  position: relative;
+  border: 3px solid var(--ink) !important;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mentor-avatar:hover,
+.peer-avatar:hover,
+.navbar-avatar:hover,
+.testimonial-avatar:hover,
+.profile-avatar:hover,
+.student-avatar:hover,
+.student-peer-avatar:hover,
+.match-avatar:hover,
+.dash-user-avatar:hover,
+.msg-avatar:hover {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.mentor-avatar::after,
+.peer-avatar::after,
+.navbar-avatar::after,
+.testimonial-avatar::after,
+.profile-avatar::after,
+.student-avatar::after,
+.student-peer-avatar::after,
+.match-avatar::after,
+.dash-user-avatar::after,
+.msg-avatar::after {
+  content: '✦';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 14px;
+  color: var(--accent);
+  text-shadow: 1px 1px 0 var(--ink), -1px -1px 0 var(--ink), 1px -1px 0 var(--ink), -1px 1px 0 var(--ink);
+  opacity: 0;
+  transform: scale(0.3) rotate(0deg);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.mentor-avatar:hover::after,
+.peer-avatar:hover::after,
+.navbar-avatar:hover::after,
+.testimonial-avatar:hover::after,
+.profile-avatar:hover::after,
+.student-avatar:hover::after,
+.student-peer-avatar:hover::after,
+.match-avatar:hover::after,
+.dash-user-avatar:hover::after,
+.msg-avatar:hover::after {
+  opacity: 1;
+  transform: scale(1.3) rotate(20deg);
+}
+
+/* ==========================================================================
+   Learning Request Cards & Pulsing Priority Badges
+   ========================================================================== */
+.request-card {
+  border: 3px dashed var(--ink) !important;
+  box-shadow: 5px 5px 0 var(--ink);
+  background-color: var(--bg-card);
+}
+
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.priority-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: currentColor;
+}
+
+.priority-high {
+  background-color: #FFE5E9;
+  color: #D90429;
+  border-color: #FF4D6D;
+  animation: pulseBadgeHigh 2.4s infinite ease-in-out;
+}
+
+.priority-medium {
+  background-color: #FFF9DB;
+  color: #B45309;
+  border-color: #FFD23F;
+  animation: pulseBadgeMedium 2.4s infinite ease-in-out;
+}
+
+.priority-low {
+  background-color: #E6FFFA;
+  color: #0D9488;
+  border-color: #2EC4B6;
+  animation: pulseBadgeLow 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseBadgeHigh {
+  0%, 100% { box-shadow: 2px 2px 0 var(--ink); transform: scale(1); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 77, 109, 0.4), 3px 3px 0 var(--ink); transform: scale(1.04); }
+}
+
+@keyframes pulseBadgeMedium {
+  0%, 100% { box-shadow: 2px 2px 0 var(--ink); transform: scale(1); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 210, 63, 0.5), 3px 3px 0 var(--ink); transform: scale(1.04); }
+}
+
+@keyframes pulseBadgeLow {
+  0%, 100% { box-shadow: 2px 2px 0 var(--ink); transform: scale(1); }
+  50% { box-shadow: 0 0 0 5px rgba(46, 196, 182, 0.45), 3px 3px 0 var(--ink); transform: scale(1.04); }
+}
+
+/* Smooth Page Transition Wrapper */
+.page-transition-wrapper {
+  animation: pageSmoothFade 0.32s cubic-bezier(0.25, 1, 0.5, 1) both;
+  will-change: opacity;
+}
+
+@keyframes pageSmoothFade {
+  0% {
+    opacity: 0.88;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Accessibility: Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skill-chip:hover,
+  .category-skill-tag:hover,
+  .skill-pill-teach:hover,
+  .skill-pill-learn:hover,
+  .skill-tag:hover {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .priority-high,
+  .priority-medium,
+  .priority-low {
+    animation: none !important;
+  }
+}
+

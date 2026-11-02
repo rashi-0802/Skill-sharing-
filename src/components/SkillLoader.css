@@ -1,0 +1,106 @@
+/* ==========================================================================
+   4S Skill & Star Loader Styles
+   Small spinning four-point anime star + bouncing chibi dots
+   ========================================================================== */
+
+.skill-loader-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.skill-star-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  animation: star-spinner-spin 1.8s infinite linear;
+}
+
+@keyframes star-spinner-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.skill-star-svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(2px 2px 0 var(--ink));
+}
+
+.size-sm .skill-star-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.size-lg .skill-star-svg {
+  width: 44px;
+  height: 44px;
+}
+
+/* Bouncing Chibi Dots */
+.chibi-dots-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.chibi-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background-color: var(--accent);
+  box-shadow: 1px 1px 0 var(--ink);
+  display: inline-block;
+  animation: chibi-dot-bounce 0.9s infinite ease-in-out;
+}
+
+.chibi-dot.dot-1 {
+  animation-delay: 0s;
+  background-color: var(--primary);
+}
+
+.chibi-dot.dot-2 {
+  animation-delay: 0.15s;
+  background-color: var(--accent);
+}
+
+.chibi-dot.dot-3 {
+  animation-delay: 0.3s;
+  background-color: var(--secondary);
+}
+
+@keyframes chibi-dot-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.skill-loader-text {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-star-spinner,
+  .chibi-dot {
+    animation: none !important;
+  }
+}

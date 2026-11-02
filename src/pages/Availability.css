@@ -1,0 +1,494 @@
+/* ==========================================================================
+   4S Weekly Availability Planner Styles (Anime/Manga Die-Cut Stickers)
+   ========================================================================== */
+
+.avail-page {
+  padding: 2.5rem 0 4rem;
+  background-color: var(--bg-main);
+  min-height: calc(100vh - 70px);
+}
+
+.avail-header {
+  margin-bottom: 2rem;
+}
+
+.avail-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  border: 1.5px solid var(--primary-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.avail-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+
+.avail-subtitle {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  max-width: 760px;
+  line-height: 1.6;
+}
+
+/* Quick Metrics Row */
+.avail-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.avail-metric-card {
+  background-color: var(--bg-card);
+  border: 2.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.avail-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.avail-metric-info h4 {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.avail-metric-number {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+}
+
+.avail-metric-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Presets & Actions Bar */
+.avail-toolbar {
+  background-color: var(--bg-card);
+  border: 2.5px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.avail-presets-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preset-chip {
+  background-color: #ffffff;
+  border: 2px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.preset-chip:hover {
+  background-color: var(--accent-light);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Weekly Grid Layout */
+.weekly-calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.day-card {
+  background-color: var(--bg-card);
+  border: 2.5px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.day-card.day-disabled {
+  background-color: #f8fafc;
+  opacity: 0.82;
+  border-style: dashed;
+}
+
+.day-card:hover {
+  border-color: var(--ink);
+  box-shadow: var(--shadow-md);
+}
+
+.day-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.day-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.day-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.day-badge-active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.day-badge-inactive {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.day-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.day-status-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Toggle Switch */
+.switch-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+.switch-input {
+  display: none;
+}
+
+.switch-slider {
+  width: 46px;
+  height: 26px;
+  background-color: #cbd5e1;
+  border: 2px solid var(--ink);
+  border-radius: 9999px;
+  position: relative;
+  transition: background-color 0.2s ease;
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+.switch-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid var(--ink);
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.switch-input:checked + .switch-slider {
+  background-color: var(--success);
+}
+
+.switch-input:checked + .switch-slider::before {
+  transform: translateX(20px);
+}
+
+/* --------------------------------------------------------------------------
+   OUTLINED STICKER TIME SLOTS (Step 5 Re-Theme: Hover Lift & Yellow Sparkle Fill)
+   -------------------------------------------------------------------------- */
+.slots-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 2px dashed #e2e8f0;
+}
+
+/* Base Die-Cut Sticker Slot */
+.slot-sticker {
+  position: relative;
+  background-color: #ffffff;
+  border: 2.5px solid var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.18s ease,
+              background-color 0.15s ease,
+              border-color 0.15s ease;
+}
+
+/* On hover: lifts up dramatically like a peeling manga sticker */
+.slot-sticker:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 5px 5px 0 var(--ink);
+  background-color: var(--bg-surface-hover);
+}
+
+.slot-sticker:active {
+  transform: translateY(-1px) scale(0.99);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* Selected or Overlapping Slot: Fills with sunny yellow + check sparkle */
+.slot-sticker-active {
+  background-color: var(--accent) !important;
+  color: var(--ink) !important;
+  border-color: var(--ink) !important;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.slot-sticker-active:hover {
+  background-color: #f5c522 !important;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* Sticker Check Sparkle Icon */
+.sticker-sparkle-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: #ffffff;
+  border: 1.5px solid var(--ink);
+  padding: 1px 4px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 0 var(--ink);
+  flex-shrink: 0;
+  animation: sparkle-bounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes sparkle-bounce {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.slot-time {
+  font-weight: 800;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.slot-period-tag {
+  font-size: 0.6875rem;
+  background-color: var(--bg-main);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.slot-overlap-indicator {
+  font-size: 0.625rem;
+  font-weight: 900;
+  background-color: var(--highlight);
+  color: #ffffff;
+  border: 1px solid var(--ink);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.slot-delete-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  margin-left: 0.2rem;
+}
+
+.slot-delete-btn:hover {
+  color: var(--highlight);
+  background-color: #ffffff;
+  border: 1px solid var(--ink);
+}
+
+.no-slots-notice {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.add-slot-btn {
+  background-color: #ffffff;
+  border: 2px dashed var(--ink);
+  border-radius: 12px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.add-slot-btn:hover {
+  border-style: solid;
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* Matching Banner */
+.matches-impact-card {
+  background: var(--ink);
+  color: #ffffff;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-content h3 {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+
+.impact-content p {
+  color: #c7d2fe;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  max-width: 640px;
+}
+
+@media (max-width: 768px) {
+  .avail-metrics-row {
+    grid-template-columns: 1fr;
+  }
+  .matches-impact-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .avail-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot-sticker,
+  .slot-sticker:hover,
+  .sticker-sparkle-badge,
+  .preset-chip,
+  .avail-metric-card {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

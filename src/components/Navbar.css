@@ -1,0 +1,688 @@
+/* ==========================================================================
+   4S Navbar Styles – Anime / Manga Academy Theme
+   Three-Zone Grid Layout & Responsive Adaptation
+   ========================================================================== */
+
+.navbar {
+  background-color: #FFFFFF;
+  border-bottom: 3px solid var(--ink, #1A1A2E);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 0 var(--ink, #1A1A2E);
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  container-type: inline-size;
+  container-name: nav-bar;
+}
+
+.navbar.navbar-scrolled {
+  box-shadow: 0 6px 0 var(--ink, #1A1A2E);
+  background-color: #FFFDF9;
+}
+
+/* 1. THREE-ZONE LAYOUT (one single row, vertically centred) */
+.navbar-container {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 16px;
+  height: 64px;
+  padding: 0 20px;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ZONE 1 (left): Brand block, with flex-shrink: 0 */
+.navbar-logo-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.navbar-logo-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.75rem;
+  background-color: #FFFFFF;
+  border: 3px solid var(--ink, #1A1A2E);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 #3A86FF;
+  text-decoration: none;
+  color: var(--text-main, #1A1A2E);
+  user-select: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
+}
+
+.navbar-logo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 0 #3A86FF;
+}
+
+.logo-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary, #3A86FF) 0%, var(--secondary, #FF8FB1) 100%);
+  border: 2.5px solid var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+@keyframes bookWiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-9deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(9deg) scale(1.05);
+  }
+}
+
+.navbar-logo-card:hover .logo-icon-box {
+  animation: bookWiggle 0.45s ease-in-out;
+}
+
+.logo-text-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Black "4S" in Bangers font */
+.logo-name {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #000000;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Subtitle in bold ink */
+.logo-subtext {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 0.775rem;
+  font-weight: 800;
+  color: var(--ink, #1A1A2E);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/* ZONE 2 (centre): Nav links list */
+.navbar-zone-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  flex-wrap: nowrap;
+  /* Zone itself must never use overflow: hidden, because that slices off Dashboard */
+}
+
+.nav-link {
+  color: var(--text-main, #1A1A2E);
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  padding: 8px 12px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 6px;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.nav-link-text {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.15s ease;
+  line-height: 1;
+}
+
+.nav-link:hover .nav-link-text {
+  transform: translateY(-1px);
+}
+
+/* Yellow active "Home" pill: stays inside each link's own box */
+.nav-link.active .nav-link-text {
+  color: var(--ink, #1A1A2E);
+  font-weight: 800;
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent, #FFD23F);
+  z-index: 1;
+  border-radius: 6px;
+  border: 2px solid var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  pointer-events: none;
+  animation: highlighterSwipe 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes highlighterSwipe {
+  from {
+    transform: scaleX(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Wavy hover underline: stays inside each link's own box */
+.nav-wavy-underline {
+  position: absolute;
+  bottom: 1px;
+  left: 6px;
+  right: 6px;
+  width: calc(100% - 12px);
+  height: 6px;
+  pointer-events: none;
+  stroke: var(--primary, #3A86FF);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.nav-link:hover .nav-wavy-underline {
+  stroke-dashoffset: 0;
+}
+
+.nav-link.active .nav-wavy-underline {
+  display: none;
+}
+
+/* "Messages" notification dot: relative to Messages link, at top: 6px; right: 2px; never touches next link */
+.nav-unread-dot {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--highlight, #FF4D6D);
+  border: 1.5px solid var(--ink, #1A1A2E);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Hamburger button in Zone 2 (<1100px) */
+.navbar-hamburger-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 12px;
+  background: #FFFFFF;
+  border: 2px solid var(--ink, #1A1A2E);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  color: var(--ink, #1A1A2E);
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease, box-shadow 0.1s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.navbar-hamburger-btn:hover {
+  background-color: var(--accent, #FFD23F);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.navbar-hamburger-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+/* ZONE 3 (right): Action group */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.navbar-user-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* All action buttons are the same height (40px), same style family, vertically centred */
+.navbar-actions .navbar-sound-toggle-desktop {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-actions .sound-toggle-btn.sound-icon-only {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navbar-icon-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: #FFFFFF;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.navbar-icon-btn:hover {
+  background-color: var(--accent, #FFD23F);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.navbar-icon-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+/* Chat icon: button has 4px margin so badge never touches a neighbour */
+.navbar-icon-btn.navbar-chat-btn {
+  margin: 0 4px;
+  overflow: visible;
+}
+
+/* Chat icon badge: positioned at button's top-right with overflow: visible */
+.navbar-unread-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background-color: var(--highlight, #FF4D6D);
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  font-weight: 900;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 1.5px solid var(--ink, #1A1A2E);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Profile chip: avatar plus first name only, max-width 120px, text-overflow: ellipsis */
+.navbar-user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 10px 0 4px;
+  border-radius: 9999px;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: #FFFFFF;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  text-decoration: none;
+  font-family: var(--font-label, 'Zen Maru Gothic', sans-serif);
+  flex-shrink: 0;
+  max-width: 120px;
+  overflow: hidden;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  z-index: 1;
+}
+
+.navbar-user-chip:hover {
+  background-color: var(--secondary-light, #FFF0F5);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.navbar-user-chip:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+.navbar-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary, #3A86FF) 0%, var(--secondary, #FF8FB1) 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.navbar-avatar.avatar-ink-ring {
+  border: 2px solid var(--ink, #1A1A2E);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+.navbar-avatar.avatar-gold-ring {
+  border: 2.5px solid #FFD23F;
+  box-shadow: 0 0 0 2px var(--ink, #1A1A2E), 0 0 10px rgba(255, 210, 63, 0.7);
+  animation: goldRingGlow 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes goldRingGlow {
+  0% {
+    box-shadow: 0 0 0 2px var(--ink, #1A1A2E), 0 0 8px rgba(255, 210, 63, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 2px var(--ink, #1A1A2E), 0 0 14px rgba(255, 210, 63, 0.95);
+  }
+}
+
+.navbar-user-info-stacked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.navbar-chip-skill-master {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF0 100%);
+  border-color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E), 0 0 10px rgba(255, 210, 63, 0.3);
+}
+
+.navbar-skill-master-title {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  color: #B45309;
+  text-shadow: 0.5px 0.5px 0 #FFD23F;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+}
+
+.navbar-username {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ink, #1A1A2E);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Logout button */
+.navbar-logout-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: #FFFFFF;
+  color: var(--ink, #1A1A2E);
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  z-index: 1;
+}
+
+.navbar-logout-btn:hover {
+  background-color: var(--danger-light, #FFEBF0);
+  color: var(--danger, #FF4D6D);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+/* Get started button (logged out) */
+.get-started-btn {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: var(--primary, #3A86FF);
+  color: #FFFFFF;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.875rem;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  flex-shrink: 0;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  z-index: 1;
+}
+
+.get-started-btn:hover {
+  background-color: var(--primary-hover, #2563EB);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-main, #FFF8EE);
+  border-bottom: 3px solid var(--ink, #1A1A2E);
+  box-shadow: 0 6px 0 var(--ink, #1A1A2E);
+  z-index: 49;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.mobile-drawer-content {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mobile-nav-link {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  color: var(--ink, #1A1A2E);
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: #FFFFFF;
+  border-color: var(--ink, #1A1A2E);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+  color: var(--primary, #3A86FF);
+}
+
+.mobile-nav-divider {
+  height: 2px;
+  background-color: var(--ink, #1A1A2E);
+  margin: 0.75rem 0;
+}
+
+.mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+}
+
+/* ==========================================================================
+   3. ADAPT STEP BY STEP SO NOTHING IS EVER CUT
+   ========================================================================== */
+
+/* Above 1500px: show everything, including subtitle in logo block */
+@media (min-width: 1501px) {
+  .logo-subtext {
+    display: inline-block;
+  }
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 15px;
+  }
+}
+
+/* 1280px to 1500px: hide only subtitle in logo block, reduce nav link padding to 8px 10px, font-size 14px */
+@media (max-width: 1500px) and (min-width: 1280px) {
+  .logo-subtext {
+    display: none !important;
+  }
+  .nav-link {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}
+
+/* 1100px to 1279px: nav link font-size 13px, padding 8px 8px, gap 2px, and hide first name in profile chip (avatar only) */
+@media (max-width: 1279px) and (min-width: 1100px) {
+  .logo-subtext {
+    display: none !important;
+  }
+  .nav-link {
+    font-size: 13px;
+    padding: 8px 8px;
+  }
+  .navbar-links {
+    gap: 2px;
+  }
+  .navbar-user-info-stacked {
+    display: none !important;
+  }
+  .navbar-user-chip {
+    padding: 0 4px !important;
+    max-width: 40px !important;
+    width: 40px !important;
+    justify-content: center;
+  }
+}
+
+/* Below 1100px: switch to hamburger menu in Zone 2's place; action group stays visible on right */
+@media (max-width: 1099px) {
+  .logo-subtext {
+    display: none !important;
+  }
+  .navbar-links {
+    display: none !important;
+  }
+  .navbar-hamburger-btn {
+    display: inline-flex !important;
+  }
+}
+
+/* Very small screens: sound toggle moves to menu panel; compact action spacing */
+@media (max-width: 580px) {
+  .navbar-container {
+    column-gap: 8px;
+    padding: 0 12px;
+  }
+  .navbar-actions .navbar-sound-toggle-desktop {
+    display: none !important;
+  }
+  .navbar-actions {
+    gap: 6px;
+  }
+  .navbar-user-actions-group {
+    gap: 6px;
+  }
+  .navbar-hamburger-label {
+    display: none;
+  }
+  .navbar-hamburger-btn {
+    padding: 0 10px;
+    width: 40px;
+    justify-content: center;
+  }
+  .navbar-user-info-stacked {
+    display: none !important;
+  }
+  .navbar-user-chip {
+    padding: 0 4px !important;
+    max-width: 40px !important;
+    width: 40px !important;
+    justify-content: center;
+  }
+}

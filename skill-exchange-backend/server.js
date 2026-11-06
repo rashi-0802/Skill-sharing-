@@ -372,11 +372,12 @@ function conversationsFor(studentId) {
 route('POST', '/api/register', (req, body) => {
   required(body, 'name', 'email', 'password');
   if (String(body.password).length < 6) throw bad('Password must be at least 6 characters');
+  const normalizedEmail = String(body.email).trim().toLowerCase();
   const r = db.prepare(
     `INSERT INTO STUDENT (Name, Email, Department, YearOfStudy, Bio, HostelBlock, RoomNo, Password)
      VALUES (?,?,?,?,?,?,?,?)`
   ).run(
-    body.name, body.email,
+    String(body.name).trim(), normalizedEmail,
     body.department ?? null, body.year ?? body.yearOfStudy ?? null, body.bio ?? null,
     body.hostelBlock ?? null, body.roomNo ?? null,
     hashPassword(body.password)
@@ -386,7 +387,8 @@ route('POST', '/api/register', (req, body) => {
 
 route('POST', '/api/login', (req, body) => {
   required(body, 'email', 'password');
-  const s = db.prepare('SELECT * FROM STUDENT WHERE Email = ?').get(body.email);
+  const normalizedEmail = String(body.email).trim().toLowerCase();
+  const s = db.prepare('SELECT * FROM STUDENT WHERE lower(Email) = lower(?)').get(normalizedEmail);
   if (!s || !verifyPassword(body.password, s.Password)) throw new HttpError(401, 'Invalid email or password');
   return hydrateStudent(s.StudentID);
 });

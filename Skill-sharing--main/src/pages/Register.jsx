@@ -12,9 +12,11 @@ import {
   UserPlus,
   Sparkles,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Loader2,
 } from 'lucide-react';
-import { DEFAULT_USER, saveUser } from '../utils/auth.js';
+import { saveUser } from '../utils/auth.js';
+import api, { ApiClientError } from '../utils/api.js';
 import './Auth.css';
 
 const Register = () => {
@@ -30,6 +32,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [statusMessage, setStatusMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const yearOptions = [
     '1st Year (Freshman)',
@@ -39,15 +42,16 @@ const Register = () => {
     'Postgraduate / Masters'
   ];
 
-  // Auto-fill sample student data for convenient testing
+  // Auto-fill sample new student data for convenient testing
   const handleAutoFill = () => {
+    const randomSuffix = Math.floor(100 + Math.random() * 900);
     setFormData({
-      name: 'Vidhi Kedia',
-      email: 'kediavidhi62@gmail.com',
+      name: 'Pooja Verma',
+      email: `pooja.verma${randomSuffix}@campus.edu`,
       password: 'password123',
-      department: 'Computer Science & Engineering',
-      year: '3rd Year (Junior)',
-      bio: 'Passionate about Web Development, DBMS, and Python. Ready to mentor frontend learners and eager to study Machine Learning.'
+      department: 'Information Technology',
+      year: '2nd Year (Sophomore)',
+      bio: 'Passionate about Web Development and UI design. Eager to learn Python for data science and teach Tailwind CSS.'
     });
     setErrors({});
     setStatusMessage({ type: 'success', text: 'Sample student details filled!' });
@@ -85,27 +89,55 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate() || isLoading) return;
 
-    // Build user object, inheriting default demo skills so their dashboard is immediately rich and interactive
-    const newUser = {
-      ...DEFAULT_USER,
-      id: `usr_${Date.now()}`,
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      department: formData.department.trim(),
-      year: formData.year,
-      bio: formData.bio.trim()
-    };
+    setIsLoading(true);
+    setStatusMessage(null);
 
-    saveUser(newUser);
-    setStatusMessage({ type: 'success', text: `Account created for ${newUser.name}! Redirecting to Dashboard...` });
+    try {
+      // Register directly with the SQLite database via backend API
+      const newStudent = await api.auth.register({
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        department: formData.department.trim(),
+        year: formData.year,
+        bio: formData.bio.trim()
+      });
 
-    setTimeout(() => {
-      navigate('/dashboard');
-    }, 400);
+      // Save user to auth state / localStorage and trigger auth sync
+      saveUser(newStudent);
+      setStatusMessage({
+        type: 'success',
+        text: `Account created for ${newStudent.name}! Redirecting to Dashboard...`
+      });
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 400);
+    } catch (err) {
+      console.error('Registration error:', err);
+      if (err instanceof ApiClientError && err.status === 409) {
+        setErrors((prev) => ({
+          ...prev,
+          email: 'This email is already registered on 4S. Please log in.'
+        }));
+        setStatusMessage({
+          type: 'error',
+          text: 'An account with this email address already exists. Please log in instead.'
+        });
+      } else {
+        const message =
+          err instanceof ApiClientError
+            ? err.message
+            : 'Unable to connect to backend server. Please verify backend is running.';
+        setStatusMessage({ type: 'error', text: message });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -136,7 +168,7 @@ const Register = () => {
             onClick={handleAutoFill}
             className="demo-fill-btn"
           >
-            Auto-fill Vidhi Kedia
+            Auto-fill Sample Student
           </button>
         </div>
 
@@ -292,9 +324,22 @@ const Register = () => {
           </div>
 
           {/* Submit */}
-          <button type="submit" className="btn btn-primary auth-submit-btn">
-            <UserPlus size={18} />
-            <span>Create 4S Account</span>
+          <button
+            type="submit"
+            className="btn btn-primary auth-submit-btn"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                <span>Creating Account...</span>
+              </>
+            ) : (
+              <>
+                <UserPlus size={18} />
+                <span>Create 4S Account</span>
+              </>
+            )}
           </button>
         </form>
 

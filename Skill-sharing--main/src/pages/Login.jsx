@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, LogIn, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, LogIn, Sparkles, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { DEFAULT_USER, saveUser } from '../utils/auth.js';
+import api, { ApiClientError } from '../utils/api.js';
 import './Auth.css';
 
 const Login = () => {
@@ -11,13 +12,17 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [statusMessage, setStatusMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Fill sample student credentials
+  // Fill sample student credentials for seeded account
   const handleQuickFill = () => {
-    setEmail(DEFAULT_USER.email);
-    setPassword('student4s@2026');
+    setEmail('kediavidhi62@gmail.com');
+    setPassword('password123');
     setErrors({});
-    setStatusMessage({ type: 'success', text: `Demo credentials for ${DEFAULT_USER.name} filled!` });
+    setStatusMessage({
+      type: 'success',
+      text: 'Demo credentials filled: kediavidhi62@gmail.com / password123',
+    });
   };
 
   const validate = () => {
@@ -38,31 +43,40 @@ const Login = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate() || isLoading) return;
 
-    // Demo authentication:
-    // If logging in as default user or any registered user
-    let userToSave = DEFAULT_USER;
+    setIsLoading(true);
+    setStatusMessage(null);
+
     try {
-      const existing = localStorage.getItem('4s_active_user');
-      if (existing) {
-        const parsed = JSON.parse(existing);
-        if (parsed.email && parsed.email.toLowerCase() === email.toLowerCase()) {
-          userToSave = parsed;
-        }
-      }
-    } catch (err) {
-      console.error(err);
-    }
+      // Authenticate directly against the SQLite backend (normalized lowercase email)
+      const student = await api.auth.login({
+        email: email.trim().toLowerCase(),
+        password,
+      });
 
-    // Save and redirect
-    saveUser(userToSave);
-    setStatusMessage({ type: 'success', text: `Welcome back, ${userToSave.name}! Redirecting to your dashboard...` });
-    setTimeout(() => {
-      navigate('/dashboard');
-    }, 400);
+      // Save user to auth state / localStorage and trigger auth sync
+      saveUser(student);
+      setStatusMessage({
+        type: 'success',
+        text: `Welcome back, ${student.name}! Redirecting to your dashboard...`,
+      });
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 400);
+    } catch (err) {
+      console.error('Login error:', err);
+      const message =
+        err instanceof ApiClientError
+          ? err.message
+          : 'Unable to connect to backend server. Please verify backend is running.';
+      setStatusMessage({ type: 'error', text: message });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -86,6 +100,7 @@ const Login = () => {
             <Sparkles size={16} className="text-primary" />
             <div>
               <strong>Demo Account:</strong> {DEFAULT_USER.name}
+              <div style={{ fontSize: '0.8rem', opacity: 0.85 }}>kediavidhi62@gmail.com · password123</div>
             </div>
           </div>
           <button
@@ -163,9 +178,22 @@ const Login = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-primary auth-submit-btn">
-            <LogIn size={18} />
-            <span>Login to Dashboard</span>
+          <button
+            type="submit"
+            className="btn btn-primary auth-submit-btn"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                <span>Signing in...</span>
+              </>
+            ) : (
+              <>
+                <LogIn size={18} />
+                <span>Login to Dashboard</span>
+              </>
+            )}
           </button>
         </form>
 

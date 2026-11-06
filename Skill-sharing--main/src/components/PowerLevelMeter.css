@@ -1,0 +1,48 @@
+/* ==========================================================================
+   PowerLevelMeter Styles – Anime Proficiency Level Meter
+   ========================================================================== */
+
+.power-level-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink, #1A1A2E);
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink, #1A1A2E);
+  width: fit-content;
+}
+
+.power-level-label {
+  line-height: 1;
+}
+
+.power-level-bolts {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.bolt-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bolt-svg-filled {
+  fill: var(--accent, #FFD23F);
+  stroke: var(--ink, #1A1A2E);
+  stroke-width: 2px;
+}
+
+.bolt-svg-empty {
+  fill: #E2E8F0;
+  stroke: #94A3B8;
+  stroke-width: 1.5px;
+  opacity: 0.45;
+}

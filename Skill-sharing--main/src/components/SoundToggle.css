@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Sound Toggle Button Styles
+   Ink: #1A1A2E | Yellow: #FFD23F | Blue: #3A86FF
+   ========================================================================== */
+
+.sound-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink, #1A1A2E);
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-weight: 800;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sound-toggle-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.sound-toggle-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1A1A2E);
+}
+
+.sound-toggle-btn.sound-chip {
+  padding: 0.35rem 0.75rem;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+}
+
+.sound-toggle-btn.sound-icon-only {
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0;
+  box-shadow: 2px 2px 0 var(--ink, #1A1A2E);
+}
+
+.sound-toggle-btn.sound-on {
+  background-color: #FFD23F;
+  color: var(--ink, #1A1A2E);
+}
+
+.sound-toggle-btn.sound-off {
+  background-color: #F1F5F9;
+  color: #64748B;
+  border-color: #94A3B8;
+  box-shadow: 2px 2px 0 #94A3B8;
+}
+
+.sound-toggle-btn.sound-off:hover {
+  background-color: #E2E8F0;
+  color: var(--ink, #1A1A2E);
+  border-color: var(--ink, #1A1A2E);
+  box-shadow: 3px 3px 0 var(--ink, #1A1A2E);
+}
+
+.sound-icon-active {
+  color: var(--ink, #1A1A2E);
+}
+
+.sound-icon-muted {
+  color: #64748B;
+}

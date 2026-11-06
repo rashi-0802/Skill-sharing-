@@ -1,0 +1,50 @@
+/* ==========================================================================
+   4S TeamUpLine Component Styles
+   ========================================================================== */
+
+.team-up-line-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.team-up-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 2px 0 rgba(26, 26, 46, 0.4));
+}
+
+.teamup-energy-sfx {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(4deg);
+  font-family: var(--font-heading);
+  font-size: 0.625rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  background-color: var(--accent);
+  border: 1.5px solid var(--ink);
+  padding: 0 4px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 0 var(--ink);
+  line-height: 1.2;
+  opacity: 0.92;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-up-line-wrapper * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .teamup-energy-sfx {
+    transform: translateX(-50%);
+  }
+}

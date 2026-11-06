@@ -1,0 +1,56 @@
+/* ==========================================================================
+   4S RankUpBurst Component Styles
+   ========================================================================== */
+
+.rank-up-burst-container {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-up-rays-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 4px rgba(255, 210, 63, 0.8));
+}
+
+.rank-up-sparkle-diamond {
+  position: absolute;
+  background-color: var(--accent);
+  border: 1.5px solid var(--ink);
+  transform: rotate(45deg);
+  border-radius: 2px;
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.rank-up-sfx-label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: var(--font-heading);
+  font-size: 0.5625rem;
+  font-weight: 900;
+  color: var(--ink);
+  background-color: var(--accent);
+  border: 1.5px solid var(--ink);
+  padding: 1px 4px;
+  border-radius: 4px;
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rank-up-burst-container {
+    display: none !important;
+  }
+}

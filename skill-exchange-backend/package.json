@@ -1,0 +1,12 @@
+{
+  "name": "campus-skill-exchange-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Campus Skill Exchange DBMS project (zero dependencies, Node 22.13+)",
+  "main": "server.js",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "test": "node test.js"
+  }
+}

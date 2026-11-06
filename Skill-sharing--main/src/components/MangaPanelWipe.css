@@ -1,0 +1,174 @@
+/* ==========================================================================
+   4S Manga Panel Wipe Page Transition Styles (Smooth Diagonal Slice)
+   ========================================================================== */
+
+.manga-wipe-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Rotated Axis Container for seamless diagonal geometry across all screens */
+.manga-wipe-rotator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250vmax;
+  height: 250vmax;
+  transform: translate(-50%, -50%) rotate(-24deg);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+/* Top Panel: Deep Manga Ink with Halftone and Sunrise Yellow border */
+.manga-panel-half.panel-top {
+  flex: 1;
+  width: 100%;
+  background-color: var(--ink);
+  background-image: radial-gradient(#FFD23F 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+  border-bottom: 3.5px solid #FFD23F;
+  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.45);
+  will-change: transform;
+  animation: mangaPanelTopSmooth 0.48s forwards;
+}
+
+/* Bottom Panel: Electric Blue with Ink border */
+.manga-panel-half.panel-bottom {
+  flex: 1;
+  width: 100%;
+  background-color: #3A86FF;
+  background-image: radial-gradient(#ffffff 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+  border-top: 3.5px solid var(--ink);
+  box-shadow: 0 -4px 16px rgba(58, 134, 255, 0.35);
+  will-change: transform;
+  animation: mangaPanelBottomSmooth 0.48s forwards;
+}
+
+/* Luminous Diagonal Blade Flash */
+.manga-wipe-blade {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent 5%, #FFD23F 25%, #ffffff 50%, #FF8FB1 75%, transparent 95%);
+  box-shadow: 0 0 14px rgba(255, 210, 63, 0.9), 0 0 28px rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  pointer-events: none;
+  animation: mangaBladeSmooth 0.48s forwards;
+}
+
+/* Subtle Action Sparkles along the cut line */
+.manga-wipe-sparkle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  pointer-events: none;
+  font-size: 20px;
+  color: #FFD23F;
+  text-shadow: 0 0 10px #ffffff;
+  animation: sparklePopSmooth 0.48s ease-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Smooth Easing Choreography (0.48s)
+   0% -> 42%: Glide smoothly to meeting seam with cubic-bezier deceleration
+   42% -> 56%: Gentle hold at seam while new route mounts seamlessly
+   56% -> 100%: Glide smoothly outward to off-screen with cubic-bezier ease-out
+   -------------------------------------------------------------------------- */
+
+@keyframes mangaPanelTopSmooth {
+  0% {
+    transform: translate3d(0, -102%, 0);
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  42% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
+  }
+  56% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+  }
+  100% {
+    transform: translate3d(0, -102%, 0);
+  }
+}
+
+@keyframes mangaPanelBottomSmooth {
+  0% {
+    transform: translate3d(0, 102%, 0);
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  42% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.1, 1);
+  }
+  56% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+  }
+  100% {
+    transform: translate3d(0, 102%, 0);
+  }
+}
+
+@keyframes mangaBladeSmooth {
+  0%, 25% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0.3);
+    animation-timing-function: ease-out;
+  }
+  42% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+    animation-timing-function: ease-in-out;
+  }
+  56% {
+    opacity: 1;
+    transform: translateY(-50%) scaleX(1);
+    animation-timing-function: ease-in;
+  }
+  75%, 100% {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0.4);
+  }
+}
+
+@keyframes sparklePopSmooth {
+  0%, 35% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(-20deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3) rotate(10deg);
+  }
+  58% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  75%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4) rotate(45deg);
+  }
+}
+
+/* Accessibility / Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .manga-wipe-overlay {
+    display: none !important;
+  }
+}

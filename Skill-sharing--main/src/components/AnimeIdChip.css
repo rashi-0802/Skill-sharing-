@@ -1,0 +1,482 @@
+/* ==========================================================================
+   ANIME ID CHIP - OUTLINED STICKER CHIP WITH COLOR-SPLIT & DECODE POPOVER
+   Prefix: TCR (blue #3A86FF) / LRN (pink #FF8FB1) / STU (indigo #4F46E5)
+   Student #: Ink bold (#1A1A2E)
+   Course #: Teal (#2EC4B6 / dark #0D9488)
+   ========================================================================== */
+
+.anime-id-chip-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.anime-id-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  background-color: #FFF8EE; /* Warm cream */
+  color: #1A1A2E; /* Ink */
+  border: 1.5px solid #1A1A2E;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px #1A1A2E;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  user-select: none;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.anime-id-chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px #1A1A2E;
+  background-color: #FFFFFF;
+}
+
+.anime-id-chip:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #1A1A2E;
+}
+
+.anime-id-chip:focus-visible {
+  outline: 2px solid #3A86FF;
+  outline-offset: 1px;
+}
+
+/* Sizes */
+.anime-id-chip.chip-size-sm {
+  padding: 1px 6px;
+  font-size: 10.5px;
+  border-width: 1.25px;
+  box-shadow: 1.5px 1.5px 0px #1A1A2E;
+}
+
+.anime-id-chip.chip-size-lg {
+  padding: 5px 12px;
+  font-size: 13.5px;
+  border: 2px solid #1A1A2E;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px #1A1A2E;
+  font-weight: 700;
+}
+
+/* Color Split Segments */
+.anime-chip-segments {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5px;
+}
+
+/* 1. Prefix: Blue TCR, Pink LRN, Ink STU */
+.segment-prefix {
+  font-weight: 900;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.prefix-tcr {
+  color: #3A86FF; /* Blue */
+}
+
+.prefix-lrn {
+  color: #DB2777; /* Rose/Pink high-contrast */
+  background-color: #FCE7F3; /* Light pink badge */
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+.prefix-stu {
+  color: #4F46E5; /* Indigo */
+}
+
+/* 2. Student Number: Ink Bold */
+.segment-student-no {
+  font-weight: 900;
+  color: #1A1A2E; /* Ink */
+}
+
+/* 3. Course Number: Teal */
+.segment-course-no {
+  color: #0D9488; /* Teal #2EC4B6 dark contrast */
+  font-weight: 800;
+}
+
+/* Hyphen */
+.segment-hyphen {
+  color: #1A1A2E;
+  font-weight: 900;
+  padding: 0 1px;
+}
+
+/* Embedded Teacher ID in Learning ID */
+.lrn-teacher-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  background-color: #EFF6FF; /* Light blue tint */
+  border: 1px solid #BFDBFE;
+  border-radius: 4px;
+  padding: 0 3px;
+  margin-left: 1px;
+}
+
+/* Awaiting Teacher Sticker */
+.anime-id-chip.chip-awaiting {
+  background-color: #F1F5F9;
+  border: 1.5px dashed #64748B;
+  color: #475569;
+  cursor: default;
+  box-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.anime-id-chip.chip-awaiting:hover {
+  transform: none;
+  background-color: #E2E8F0;
+  box-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Match Pair Layout */
+.anime-id-match-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.anime-id-pair-arrow {
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 13px;
+  color: #FF5C8D;
+  font-weight: 900;
+  user-select: none;
+}
+
+/* External label */
+.chip-external-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-right: 2px;
+}
+
+/* Copied Balloon */
+.anime-chip-copied-bubble {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1A1A2E;
+  color: #FFFFFF;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: copiedPop 0.18s ease-out;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+@keyframes copiedPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   DECODE POPOVER
+   -------------------------------------------------------------------------- */
+.anime-id-decode-popover {
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 320px;
+  background-color: #FFFDF9;
+  border: 2px solid #1A1A2E;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px #1A1A2E;
+  padding: 8px 12px;
+  z-index: 150;
+  pointer-events: none;
+  text-align: left;
+  animation: decodeFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes decodeFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.decode-popover-arrow {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background-color: #FFFDF9;
+  border-right: 2px solid #1A1A2E;
+  border-bottom: 2px solid #1A1A2E;
+}
+
+.decode-popover-header {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 3px;
+}
+
+.decode-id-title {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  color: #1A1A2E;
+}
+
+.decode-popover-text {
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1F2937;
+  line-height: 1.4;
+  margin: 0 0 3px;
+}
+
+.decode-popover-hint {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   ID GUIDE BUTTON & MODAL
+   -------------------------------------------------------------------------- */
+.anime-id-guide-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.anime-id-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  background: #FFFFFF;
+  border: 1.5px solid #1A1A2E;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #1A1A2E;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1A1A2E;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.anime-id-guide-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 #1A1A2E;
+  background: #FFFDF9;
+}
+
+.anime-id-guide-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #1A1A2E;
+}
+
+.anime-id-guide-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 340px;
+  background: #FFF8EE;
+  border: 2.5px solid #1A1A2E;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 #1A1A2E;
+  padding: 12px 14px;
+  z-index: 200;
+  animation: decodeFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.anime-id-guide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #E5E7EB;
+}
+
+.anime-id-guide-badge {
+  background: #FFD23F;
+  border: 1.5px solid #1A1A2E;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: var(--font-heading, 'Bangers', cursive);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #1A1A2E;
+}
+
+.anime-id-guide-close {
+  background: none;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.anime-id-guide-close:hover {
+  color: #1A1A2E;
+}
+
+.anime-id-guide-intro {
+  font-size: 11.5px;
+  color: #475569;
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.anime-id-guide-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.anime-id-guide-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #FFFFFF;
+  border: 1.5px solid #1A1A2E;
+  border-radius: 6px;
+  padding: 6px 8px;
+  box-shadow: 1.5px 1.5px 0 #1A1A2E;
+}
+
+.anime-id-guide-sample {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.anime-id-guide-sample.sample-awaiting {
+  font-family: inherit;
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.anime-id-guide-desc {
+  font-size: 11px;
+  color: #334155;
+  line-height: 1.35;
+}
+
+.anime-id-guide-footer {
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid #E5E7EB;
+  font-size: 10px;
+  color: #64748B;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL ANIME ID TOAST
+   -------------------------------------------------------------------------- */
+.anime-id-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.anime-id-toast-card {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFF8EE;
+  border: 2px solid #1A1A2E;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #1A1A2E;
+  padding: 8px 14px;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #1A1A2E;
+  animation: toastSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.anime-toast-fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anime-id-toast-copy-btn {
+  background: #3A86FF;
+  border: 1.5px solid #1A1A2E;
+  border-radius: 4px;
+  box-shadow: 1.5px 1.5px 0 #1A1A2E;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 7px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.anime-id-toast-copy-btn:hover {
+  transform: translate(-0.5px, -0.5px);
+  background: #2563EB;
+}
+
+.anime-id-toast-copy-btn.copied {
+  background: #10B981;
+}

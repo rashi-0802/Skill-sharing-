@@ -1,0 +1,60 @@
+/* ==========================================================================
+   MangaCard Styles – Anime / Manga Academy Theme
+   ========================================================================== */
+
+.manga-card-wrapper {
+  background-color: var(--bg-card, #FFFFFF);
+  border: 3px solid var(--ink, #1A1A2E);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 5px 5px 0 var(--ink, #1A1A2E);
+  position: relative;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dashed ink border for learning request cards */
+.manga-card-dashed {
+  border: 3px dashed var(--ink, #1A1A2E) !important;
+}
+
+.manga-card-clickable {
+  cursor: pointer;
+}
+
+/* Category Accent Strip across top */
+.manga-card-accent-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 2;
+  border-bottom: 2px solid var(--ink, #1A1A2E);
+}
+
+/* Category Accent Corner Tag */
+.manga-corner-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.65rem 0.25rem 0.75rem;
+  border-bottom-left-radius: 10px;
+  border-left: 2px solid var(--ink, #1A1A2E);
+  border-bottom: 2px solid var(--ink, #1A1A2E);
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink, #1A1A2E);
+  z-index: 3;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .manga-card-wrapper {
+    transform: none !important;
+  }
+}

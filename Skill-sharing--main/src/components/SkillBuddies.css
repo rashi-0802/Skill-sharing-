@@ -1,0 +1,525 @@
+/* ==========================================================================
+   4S Skill Buddies Animated Showcase Component Styles
+   Theme: Manga / Anime Academy
+   Palette: Ink (#1A1A2E), Blue (#3A86FF), Pink (#FF8FB1), Yellow (#FFD23F),
+            Teal (#2EC4B6), Cream (#FFF8EE)
+   Typography: Bangers (Headings & Accents), Nunito (Body)
+   ========================================================================== */
+
+.skill-buddies-section {
+  position: relative;
+  width: 100%;
+  padding: clamp(32px, 6vw, 72px) 0;
+  background-color: #ffffff;
+  /* Faint manga halftone dot pattern */
+  background-image: radial-gradient(#1A1A2E 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+  border-top: 3px solid #1A1A2E;
+  border-bottom: 3px solid #1A1A2E;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Semi-opaque white wash so halftone stays faint and legible */
+.skill-buddies-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.94);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.skill-buddies-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.skill-buddies-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(24px, 4vw, 40px);
+}
+
+.skill-buddies-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #FFD23F;
+  border: 2px solid #1A1A2E;
+  box-shadow: 2.5px 2.5px 0 #1A1A2E;
+  padding: 0.25rem 0.85rem;
+  border-radius: 9999px;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: #1A1A2E;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.skill-buddies-title {
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  letter-spacing: 0.04em;
+  color: #1A1A2E;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.skill-buddies-title-highlight {
+  color: #3A86FF;
+  text-shadow: 3px 3px 0 #FFD23F;
+  margin-left: 0.35rem;
+}
+
+.skill-buddies-subtitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.6;
+  color: #5A5A78;
+  margin: 0;
+}
+
+/* Main Showcase Panel */
+.skill-buddies-panel {
+  position: relative;
+  background-color: #ffffff;
+  border: 3px solid #1A1A2E;
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 #1A1A2E;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  overflow: hidden;
+}
+
+/* Panel Top Toolbar (Skill Switcher & Sound Toggle) */
+.skill-buddies-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed #E2E8F0;
+}
+
+.skill-buddies-chips-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.skill-buddies-chip-label {
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: #5A5A78;
+  text-transform: uppercase;
+}
+
+.skill-buddy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 2px solid #1A1A2E;
+  background-color: #FFF8EE;
+  color: #1A1A2E;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.825rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #1A1A2E;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.skill-buddy-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #1A1A2E;
+}
+
+.skill-buddy-chip.active {
+  background-color: #FFD23F;
+  border-color: #1A1A2E;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #1A1A2E;
+}
+
+.skill-buddies-sound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  border: 2px solid #1A1A2E;
+  background-color: #FFF8EE;
+  color: #1A1A2E;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #1A1A2E;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.skill-buddies-sound-btn:hover {
+  background-color: #FF8FB1;
+  transform: translateY(-1px);
+}
+
+/* Stage Area where characters meet */
+.skill-buddies-stage {
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+  height: clamp(340px, 45vw, 400px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid #1A1A2E;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #FFF8EE 0%, #ffffff 80%);
+  margin-bottom: 1.5rem;
+}
+
+/* Manga screentone backdrop inside stage */
+.skill-buddies-stage-screentone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#1A1A2E 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Corner Comic Caption */
+.skill-buddies-corner-caption {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 15;
+  background-color: #1A1A2E;
+  color: #FFF8EE;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 #FFD23F;
+  text-transform: uppercase;
+}
+
+/* Teacher & Learner Chibi Placement */
+.skill-buddy-char-btn {
+  position: absolute;
+  bottom: 30px;
+  z-index: 12;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skill-buddy-char-btn:hover {
+  transform: scale(1.05);
+}
+
+.skill-buddy-teacher-slot {
+  left: clamp(5%, 12%, 18%);
+  width: clamp(120px, 18vw, 150px);
+  height: clamp(155px, 22vw, 190px);
+}
+
+.skill-buddy-learner-slot {
+  right: clamp(5%, 12%, 18%);
+  width: clamp(120px, 18vw, 150px);
+  height: clamp(155px, 22vw, 190px);
+}
+
+/* Speech bubbles directly connected to each character */
+.skill-buddy-speech-bubble {
+  position: absolute;
+  top: clamp(24px, 5vw, 45px);
+  z-index: 22;
+  pointer-events: auto;
+}
+
+.skill-buddy-speech-bubble.left {
+  left: clamp(3%, 9%, 14%);
+}
+
+.skill-buddy-speech-bubble.right {
+  right: clamp(3%, 9%, 14%);
+}
+
+.skill-buddy-dialogue-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background-color: #ffffff;
+  border: 2.5px solid #1A1A2E;
+  border-radius: 14px;
+  padding: 0.45rem 0.85rem;
+  box-shadow: 4px 4px 0 #1A1A2E;
+  max-width: clamp(150px, 24vw, 220px);
+  position: relative;
+}
+
+.skill-buddy-dialogue-card::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid #1A1A2E;
+}
+
+.skill-buddy-speech-bubble.left .skill-buddy-dialogue-card::after {
+  left: 30%;
+}
+
+.skill-buddy-speech-bubble.right .skill-buddy-dialogue-card::after {
+  right: 30%;
+}
+
+.skill-buddy-role-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  align-self: flex-start;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  border: 1.5px solid #1A1A2E;
+  text-transform: uppercase;
+}
+
+.skill-buddy-role-tag.teacher {
+  background-color: #3A86FF;
+  color: #ffffff;
+}
+
+.skill-buddy-role-tag.learner {
+  background-color: #FF8FB1;
+  color: #1A1A2E;
+}
+
+.skill-buddy-name {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: #1A1A2E;
+  line-height: 1.2;
+}
+
+.skill-buddy-quote {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: #4A4A68;
+  line-height: 1.3;
+}
+
+/* Center Clasp & Starburst Area */
+.skill-buddies-center-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 18;
+  pointer-events: none;
+}
+
+.skill-buddies-match-banner {
+  margin-top: 80px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #FFD23F;
+  border: 2.5px solid #1A1A2E;
+  box-shadow: 4px 4px 0 #1A1A2E;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: 0.06em;
+  color: #1A1A2E;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  pointer-events: auto;
+}
+
+.skill-buddies-clasp-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 16;
+  width: 90px;
+  height: 70px;
+}
+
+/* Floating interactive Emote Popups */
+.skill-buddy-emote-popup {
+  position: absolute;
+  top: -24px;
+  right: -10px;
+  z-index: 30;
+  background-color: #FFF8EE;
+  border: 2px solid #1A1A2E;
+  box-shadow: 2px 2px 0 #1A1A2E;
+  border-radius: 9999px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.85rem;
+  pointer-events: none;
+  animation: emoteFloatUp 1s ease-out forwards;
+}
+
+@keyframes emoteFloatUp {
+  0% { transform: scale(0.6) translateY(0); opacity: 0; }
+  30% { transform: scale(1.15) translateY(-8px); opacity: 1; }
+  100% { transform: scale(1) translateY(-22px); opacity: 0; }
+}
+
+/* Bottom Footer / CTA Bar inside panel */
+.skill-buddies-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.skill-buddies-value-props {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.skill-buddy-prop-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1A1A2E;
+}
+
+.skill-buddies-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background-color: #3A86FF;
+  border: 2.5px solid #1A1A2E;
+  border-radius: 9999px;
+  box-shadow: 4px 4px 0 #1A1A2E;
+  color: #ffffff;
+  font-family: 'Bangers', cursive, sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.skill-buddies-cta-btn:hover {
+  background-color: #2563EB;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #1A1A2E;
+}
+
+.skill-buddies-cta-btn:active {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 #1A1A2E;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skill-buddies-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .skill-buddies-stage {
+    min-height: 380px;
+    height: 380px;
+  }
+
+  .skill-buddy-teacher-slot {
+    left: 2%;
+    width: 110px;
+    height: 145px;
+  }
+
+  .skill-buddy-learner-slot {
+    right: 2%;
+    width: 110px;
+    height: 145px;
+  }
+
+  .skill-buddy-speech-bubble.left {
+    left: 2%;
+    top: 15px;
+  }
+
+  .skill-buddy-speech-bubble.right {
+    right: 2%;
+    top: 15px;
+  }
+
+  .skill-buddy-dialogue-card {
+    max-width: 140px;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .skill-buddy-name {
+    font-size: 0.78rem;
+  }
+
+  .skill-buddy-quote {
+    font-size: 0.7rem;
+  }
+
+  .skill-buddies-match-banner {
+    margin-top: 60px;
+    font-size: 0.95rem;
+  }
+
+  .skill-buddies-footer-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .skill-buddies-value-props {
+    justify-content: center;
+  }
+
+  .skill-buddies-cta-btn {
+    justify-content: center;
+  }
+}

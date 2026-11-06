@@ -1,0 +1,31 @@
+/* ==========================================================================
+   4S Scroll Progress Bar Styles
+   ========================================================================== */
+
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: rgba(26, 26, 46, 0.12);
+  border-bottom: 2px solid var(--ink);
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scroll-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #FF8FB1 0%, #FFD23F 50%, #3A86FF 100%);
+  transform-origin: left center;
+  transition: transform 0.08s linear;
+  box-shadow: 0 0 8px rgba(58, 134, 255, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-fill {
+    transition: none !important;
+  }
+}
